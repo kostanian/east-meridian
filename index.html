@@ -56,7 +56,6 @@
       <ul class="nav__menu" id="navMenu">
         <li><a href="#about" class="nav__link">О компании</a></li>
         <li><a href="#services" class="nav__link">Услуги</a></li>
-        <li><a href="#logistics" class="nav__link">Логистика</a></li>
         <li><a href="#process" class="nav__link">Как работаем</a></li>
         <li><a href="#contact" class="nav__link nav__link--cta">Контакты</a></li>
       </ul>
@@ -93,7 +92,7 @@
         <p class="hero__chinese">东方子午线</p>
         <p class="hero__tagline">Логистика · Финансы · Поставщики · Перевод</p>
         <p class="hero__desc">
-          Полный спектр бизнес-услуг в Китае для предпринимателей<br class="hide-mobile" />
+          Полный спектр услуг в Китае для бизнеса и физических лиц<br class="hide-mobile" />
           из России и Казахстана
         </p>
 
@@ -184,8 +183,8 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
               <div>
-                <strong>Офисы в Китае</strong>
-                <span>Гуанчжоу, Иу, Шэньчжэнь</span>
+                <strong>Склады в Китае</strong>
+                <span>Гуанчжоу, Иу</span>
               </div>
             </div>
             <div class="about__feature">
@@ -246,12 +245,12 @@
             </svg>
           </div>
           <h3 class="svc-card__title">Логистика</h3>
-          <p class="svc-card__desc">Авиа, ж/д и морская доставка из Китая в Россию и Казахстан. Организация локальной доставки по Китаю.</p>
+          <p class="svc-card__desc">Авиа, ж/д и морская доставка из Китая в Россию и Казахстан. Локальная доставка по Китаю курьерскими службами или независимыми транспортными маршрутами.</p>
           <ul class="svc-card__list">
             <li>Авиадоставка — от 3 дней</li>
             <li>Ж/д — от 12 дней</li>
             <li>Морская — FCL/LCL</li>
-            <li>Доставка по Китаю</li>
+            <li>Курьерские службы по Китаю</li>
           </ul>
         </div>
 
@@ -269,11 +268,11 @@
             </svg>
           </div>
           <h3 class="svc-card__title">Складские услуги</h3>
-          <p class="svc-card__desc">Приём и обработка грузов на складах в Китае. Упаковка, маркировка, грузчики, временное хранение.</p>
+          <p class="svc-card__desc">Приём и обработка грузов на складах в Гуанчжоу и Иу. Упаковка и маркировка для маркетплейсов: Amazon, Wildberries, Ozon и других.</p>
           <ul class="svc-card__list">
             <li>Приём и проверка грузов</li>
-            <li>Упаковка и маркировка</li>
-            <li>Услуги грузчиков</li>
+            <li>Упаковка для маркетплейсов</li>
+            <li>Маркировка: Amazon, WB, Ozon</li>
             <li>Временное хранение</li>
           </ul>
         </div>
@@ -377,107 +376,6 @@
           </ul>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░░ LOGISTICS ░░░ -->
-  <section class="logistics" id="logistics">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-eyebrow">Маршруты и сроки</span>
-        <h2 class="section-title">Логистика из Китая</h2>
-        <p class="section-desc">Три способа доставки вашего груза — выберите оптимальный по скорости и стоимости</p>
-      </div>
-
-      <!-- Route Map (D3) -->
-      <div class="logistics__map-wrap">
-        <div class="logistics__map" id="logisticsMapD3">
-          <div class="logistics__map-loader">
-            <svg width="28" height="28" viewBox="0 0 28 28" class="hero__map-spin">
-              <circle cx="14" cy="14" r="10" fill="none" stroke="#d4a843" stroke-width="1.5" stroke-dasharray="44 20" opacity="0.5"/>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Route Cards -->
-      <div class="logistics__routes">
-
-        <div class="route-card route-card--air" id="routeAir">
-          <div class="route-card__badge">Быстро</div>
-          <div class="route-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
-              <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" stroke="#e8c872" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3 class="route-card__title">Авиадоставка</h3>
-          <div class="route-card__time">3–7 <span>дней</span></div>
-          <p class="route-card__desc">Оптимально для срочных и дорогостоящих грузов. Прямые рейсы из Пекина, Шанхая, Гуанчжоу.</p>
-          <ul class="route-card__details">
-            <li><span>Вес:</span> до 1000 кг</li>
-            <li><span>Маршрут:</span> Китай → Москва/Алматы</li>
-            <li><span>Тип груза:</span> электроника, одежда, запчасти</li>
-          </ul>
-        </div>
-
-        <div class="route-card route-card--rail" id="routeRail">
-          <div class="route-card__badge">Оптимально</div>
-          <div class="route-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
-              <rect x="3" y="4" width="18" height="12" rx="2" stroke="#f0a500" stroke-width="1.5"/>
-              <path d="M3 10h18" stroke="#f0a500" stroke-width="1.5"/>
-              <circle cx="7.5" cy="19" r="2" stroke="#f0a500" stroke-width="1.5"/>
-              <circle cx="16.5" cy="19" r="2" stroke="#f0a500" stroke-width="1.5"/>
-              <path d="M7.5 17V16M16.5 17V16" stroke="#f0a500" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="route-card__title">Железнодорожная</h3>
-          <div class="route-card__time">12–18 <span>дней</span></div>
-          <p class="route-card__desc">Золотая середина между скоростью и ценой. Контейнерные поезда через Казахстан.</p>
-          <ul class="route-card__details">
-            <li><span>Объём:</span> FCL и LCL</li>
-            <li><span>Маршрут:</span> Китай → Россия/Казахстан</li>
-            <li><span>Тип груза:</span> товары народного потребления</li>
-          </ul>
-        </div>
-
-        <div class="route-card route-card--sea" id="routeSea">
-          <div class="route-card__badge">Экономично</div>
-          <div class="route-card__icon">
-            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
-              <path d="M2 20Q6 17 12 20Q18 23 22 20" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M6 16L4 20" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M18 16L20 20" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M6 16H18L16 8H8L6 16Z" stroke="#7ab8e8" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M12 8V4M12 4L9 7M12 4L15 7" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <h3 class="route-card__title">Морская доставка</h3>
-          <div class="route-card__time">30–45 <span>дней</span></div>
-          <p class="route-card__desc">Самый экономичный вариант для больших объёмов. FCL и LCL контейнеры из портов Китая.</p>
-          <ul class="route-card__details">
-            <li><span>Объём:</span> от 1 CBM до FCL</li>
-            <li><span>Маршрут:</span> Китай → Владивосток/СПб</li>
-            <li><span>Тип груза:</span> крупные партии, оборудование</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <!-- Local delivery highlight -->
-      <div class="logistics__local">
-        <div class="logistics__local-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#d4a843" stroke-width="1.5"/>
-            <circle cx="12" cy="9" r="2.5" stroke="#d4a843" stroke-width="1.5"/>
-          </svg>
-        </div>
-        <div class="logistics__local-text">
-          <h3>Локальная доставка по Китаю</h3>
-          <p>Организуем доставку товара от поставщика или с фабрики прямо на наш склад или до любой точки в Китае. Курьеры, грузовики, экспресс-доставка внутри страны.</p>
-        </div>
-        <a href="#contact" class="btn btn-outline">Узнать тарифы</a>
       </div>
     </div>
   </section>
@@ -591,72 +489,6 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░░ PLATFORMS ░░░ -->
-  <section class="platforms">
-    <div class="container">
-      <div class="platforms__inner">
-        <div class="platforms__text">
-          <span class="section-eyebrow">Финансовые операции</span>
-          <h2 class="section-title">Выкуп с любых<br><em>площадок Китая</em></h2>
-          <p>Мы работаем со всеми крупными торговыми платформами Китая. Вам не нужен китайский банковский счёт — мы берём на себя оплату и логистику выкупа.</p>
-          <ul class="platforms__list">
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Перевод юаней в Китай без ограничений
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Прямая оплата китайским поставщикам
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              Фиксированный курс на момент оплаты
-            </li>
-          </ul>
-          <a href="#contact" class="btn btn-gold">Перевести деньги в Китай</a>
-        </div>
-        <div class="platforms__icons">
-          <div class="platform-badge" style="--delay: 0s">
-            <div class="platform-badge__inner">
-              <span class="platform-badge__name">1688</span>
-              <span class="platform-badge__sub">Alibaba B2B</span>
-            </div>
-          </div>
-          <div class="platform-badge" style="--delay: 0.1s">
-            <div class="platform-badge__inner">
-              <span class="platform-badge__name">淘宝</span>
-              <span class="platform-badge__sub">Taobao</span>
-            </div>
-          </div>
-          <div class="platform-badge" style="--delay: 0.2s">
-            <div class="platform-badge__inner">
-              <span class="platform-badge__name">拼多多</span>
-              <span class="platform-badge__sub">Pinduoduo</span>
-            </div>
-          </div>
-          <div class="platform-badge" style="--delay: 0.3s">
-            <div class="platform-badge__inner">
-              <span class="platform-badge__name">京东</span>
-              <span class="platform-badge__sub">JD.com</span>
-            </div>
-          </div>
-          <div class="platform-badge" style="--delay: 0.4s">
-            <div class="platform-badge__inner">
-              <span class="platform-badge__name">天猫</span>
-              <span class="platform-badge__sub">Tmall</span>
-            </div>
-          </div>
-          <div class="platform-badge" style="--delay: 0.5s">
-            <div class="platform-badge__inner">
-              <span class="platform-badge__name">微信</span>
-              <span class="platform-badge__sub">WeChat Pay</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -871,7 +703,7 @@
         <div class="footer__links">
           <h4>Услуги</h4>
           <ul>
-            <li><a href="#logistics">Логистика</a></li>
+            <li><a href="#services">Логистика</a></li>
             <li><a href="#services">Складские услуги</a></li>
             <li><a href="#services">Финансовые операции</a></li>
             <li><a href="#services">Поиск поставщиков</a></li>

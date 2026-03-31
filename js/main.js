@@ -33,7 +33,6 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
         initHeroAnimations();
         initCounters();
         initHeroMap();
-        initLogisticsMap();
       }
     });
   });
@@ -796,62 +795,224 @@ async function buildD3Map(containerId, options) {
    HERO MAP (D3)
 ════════════════════════════════════════ */
 async function initHeroMap() {
-  await buildD3Map('heroMap', {
-    center: [78, 52], scale: 165, height: 460, tx: 0.52, ty: 0.52,
-    routes: [
-      { coords: [[116.4,39.9],[95,50],[65,56],[37.6,55.8]], color: '#e8c872' },
-      { coords: [[116.4,39.9],[100,44],[88,46],[76.9,43.2]], color: '#f0a500' },
-    ],
-    cities: [
-      { name:'Пекин', sub:'北京', lon:116.4, lat:39.9, main:true, color:'#d4a843', dx:9 },
-      { name:'Шанхай', lon:121.5, lat:31.2, color:'#d4a843', dx:8 },
-      { name:'Гуанчжоу', lon:113.3, lat:23.1, color:'#d4a843', dx:8 },
-      { name:'Иу', lon:120.1, lat:29.3, color:'#d4a843', dx:8 },
-      { name:'Москва', sub:'Россия', lon:37.6, lat:55.8, main:true, color:'#c8bfa0', dx:-9 },
-      { name:'Алматы', sub:'Казахстан', lon:76.9, lat:43.2, main:true, color:'#b8b0a0', dx:9 },
-      { name:'Астана', lon:71.4, lat:51.2, color:'#b8b0a0', dx:-8 },
-    ],
-    labels: [
-      { text:'КИТАЙ', lon:105, lat:34, color:'rgba(212,168,67,0.35)' },
-      { text:'РОССИЯ', lon:75, lat:64, color:'rgba(200,191,160,0.28)' },
-      { text:'КАЗАХСТАН', lon:66, lat:47, color:'rgba(200,191,160,0.28)' },
-    ]
-  });
+  const container = document.getElementById('heroMap');
+  if (!container || typeof d3 === 'undefined' || typeof topojson === 'undefined') return;
+
+  const W = container.offsetWidth || 420;
+  const H = 460;
+  const center = [95, 50];
+  const scale = 165;
+
+  const svg = d3.select(container)
+    .append('svg').attr('width','100%').attr('height', H).attr('viewBox', `0 0 ${W} ${H}`);
+
+  const defs = svg.append('defs');
+  // Glow filter
+  const gf = defs.append('filter').attr('id','heroGlow').attr('x','-80%').attr('y','-80%').attr('width','260%').attr('height','260%');
+  gf.append('feGaussianBlur').attr('in','SourceGraphic').attr('stdDeviation','5').attr('result','blur');
+  const fm = gf.append('feMerge');
+  fm.append('feMergeNode').attr('in','blur');
+  fm.append('feMergeNode').attr('in','SourceGraphic');
+
+  // Graticule
+  const proj = d3.geoMercator().center(center).scale(scale).translate([W*0.52, H*0.52]);
+  const path = d3.geoPath().projection(proj);
+  svg.append('path').datum(d3.geoGraticule().step([20,20])())
+    .attr('d', path).attr('fill','none').attr('stroke','rgba(212,168,67,0.04)').attr('stroke-width',0.6);
+
+  const loader = container.querySelector('.hero__map-loader');
+
+  try {
+    const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+    if (loader) gsap.to(loader, { opacity:0, duration:0.4, onComplete:()=>loader.remove() });
+
+    const all = topojson.feature(world, world.objects.countries);
+    const hi = { '156':'rgba(212,168,67,0.14)', '643':'rgba(200,191,160,0.06)', '398':'rgba(200,191,160,0.09)' };
+    const hiS = { '156':'rgba(212,168,67,0.7)', '643':'rgba(200,191,160,0.4)', '398':'rgba(200,191,160,0.45)' };
+
+    svg.append('g').selectAll('path')
+      .data(all.features.filter(d=>!hi[String(d.id)]))
+      .join('path').attr('d',path)
+      .attr('fill','rgba(255,255,255,0.012)').attr('stroke','rgba(255,255,255,0.04)').attr('stroke-width',0.25);
+
+    svg.append('g').selectAll('path')
+      .data(all.features.filter(d=>hi[String(d.id)]))
+      .join('path').attr('d',path)
+      .attr('fill',d=>hi[String(d.id)]||'transparent')
+      .attr('stroke',d=>hiS[String(d.id)]||'none')
+      .attr('stroke-width',d=>d.id===156?1.1:0.7)
+      .attr('opacity',0).each(function(_,i){ gsap.to(this,{opacity:1,duration:0.7,delay:i*0.1+0.2}); });
+
+    // === Hub: центр Китая ===
+    const HUB = [105, 33]; // условный центр Китая
+    const hubPx = proj(HUB);
+
+    // === Китайские города → Hub ===
+    const cnCities = [
+      { name:'Пекин',    sub:'北京', lon:116.4, lat:39.9 },
+      { name:'Гуанчжоу', sub:'广州', lon:113.3, lat:23.1 },
+      { name:'Иу',       sub:'义乌', lon:120.1, lat:29.3 },
+      { name:'Чунцин',   sub:'重庆', lon:106.6, lat:29.6 },
+    ];
+    const cnRoutes = svg.append('g').attr('class','cn-routes');
+    cnCities.forEach((c, i) => {
+      const p0 = proj([c.lon, c.lat]);
+      const el = cnRoutes.append('line')
+        .attr('x1',p0[0]).attr('y1',p0[1])
+        .attr('x2',hubPx[0]).attr('y2',hubPx[1])
+        .attr('stroke','rgba(212,168,67,0.55)').attr('stroke-width',1.2)
+        .attr('stroke-dasharray','5 4').attr('opacity',0).node();
+      gsap.to(el, { opacity:1, duration:0.5, delay: i*0.15 + 1.2 });
+    });
+
+    // === Hub → Россия hub (Москва) → города России ===
+    const RU_HUB = [55, 56]; // центр европейской части РФ
+    const ruHubPx = proj(RU_HUB);
+    const ruCities = [
+      { name:'Москва',        lon:37.6,  lat:55.8 },
+      { name:'С.-Петербург',  lon:30.3,  lat:59.9 },
+      { name:'Екатеринбург',  lon:60.6,  lat:56.8 },
+      { name:'Новосибирск',   lon:82.9,  lat:55.0 },
+      { name:'Владивосток',   lon:131.9, lat:43.1 },
+    ];
+
+    // Hub China → Hub Russia
+    const ruMainEl = svg.append('path')
+      .datum({type:'Feature',geometry:{type:'LineString',coordinates:[HUB,RU_HUB]}})
+      .attr('d',path).attr('fill','none')
+      .attr('stroke','#c8bfa0').attr('stroke-width',1.8).attr('stroke-linecap','round').node();
+    if (ruMainEl) {
+      const len = ruMainEl.getTotalLength();
+      gsap.set(ruMainEl,{strokeDasharray:`8 5`,strokeDashoffset:len,opacity:0});
+      gsap.to(ruMainEl,{strokeDashoffset:0,opacity:0.75,duration:1.8,delay:1.8,ease:'power2.inOut'});
+    }
+
+    // Hub Russia → города
+    ruCities.forEach((c,i) => {
+      const p1 = proj([c.lon,c.lat]);
+      if (!p1) return;
+      const el = svg.append('line')
+        .attr('x1',ruHubPx[0]).attr('y1',ruHubPx[1])
+        .attr('x2',p1[0]).attr('y2',p1[1])
+        .attr('stroke','rgba(200,191,160,0.45)').attr('stroke-width',0.9)
+        .attr('stroke-dasharray','4 4').attr('opacity',0).node();
+      gsap.to(el,{opacity:1,duration:0.5,delay: 3.6 + i*0.12});
+    });
+
+    // === Hub → Казахстан hub → города Казахстана ===
+    const KZ_HUB = [68, 48];
+    const kzHubPx = proj(KZ_HUB);
+    const kzCities = [
+      { name:'Алматы',  lon:76.9, lat:43.2 },
+      { name:'Астана',  lon:71.4, lat:51.2 },
+      { name:'Шымкент', lon:69.6, lat:42.3 },
+    ];
+
+    const kzMainEl = svg.append('path')
+      .datum({type:'Feature',geometry:{type:'LineString',coordinates:[HUB,KZ_HUB]}})
+      .attr('d',path).attr('fill','none')
+      .attr('stroke','#b8b0a0').attr('stroke-width',1.8).attr('stroke-linecap','round').node();
+    if (kzMainEl) {
+      const len = kzMainEl.getTotalLength();
+      gsap.set(kzMainEl,{strokeDasharray:`8 5`,strokeDashoffset:len,opacity:0});
+      gsap.to(kzMainEl,{strokeDashoffset:0,opacity:0.7,duration:1.4,delay:2.2,ease:'power2.inOut'});
+    }
+
+    kzCities.forEach((c,i) => {
+      const p1 = proj([c.lon,c.lat]);
+      if (!p1) return;
+      const el = svg.append('line')
+        .attr('x1',kzHubPx[0]).attr('y1',kzHubPx[1])
+        .attr('x2',p1[0]).attr('y2',p1[1])
+        .attr('stroke','rgba(184,176,160,0.45)').attr('stroke-width',0.9)
+        .attr('stroke-dasharray','4 4').attr('opacity',0).node();
+      gsap.to(el,{opacity:1,duration:0.5,delay: 3.8 + i*0.12});
+    });
+
+    // === Пульсирующий Hub ===
+    const hubG = svg.append('g');
+    [22,14,7].forEach((r,i)=>{
+      hubG.append('circle').attr('cx',hubPx[0]).attr('cy',hubPx[1]).attr('r',r)
+        .attr('fill','none').attr('stroke','rgba(212,168,67,0.2)').attr('stroke-width',0.8)
+        .attr('opacity',0).each(function(){ gsap.to(this,{opacity:1,duration:0.4,delay:1+i*0.1}); });
+    });
+    hubG.append('circle').attr('cx',hubPx[0]).attr('cy',hubPx[1]).attr('r',5)
+      .attr('fill','#d4a843').attr('opacity',0).attr('filter','url(#heroGlow)')
+      .each(function(){ gsap.to(this,{opacity:0.95,duration:0.5,delay:0.9}); });
+
+    // Pulse animation on hub
+    gsap.to(hubG.select('circle:last-child').node(),{
+      attr:{r:7},opacity:0.6,duration:1.5,yoyo:true,repeat:-1,ease:'sine.inOut',delay:2
+    });
+
+    // === Города Китая — точки ===
+    cnCities.forEach((c,i)=>{
+      const p = proj([c.lon,c.lat]);
+      if (!p) return;
+      const g = svg.append('g').attr('opacity',0);
+      g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',4.5)
+        .attr('fill','#d4a843').attr('opacity',0.85).attr('filter','url(#heroGlow)');
+      const ta = c.lon < HUB[0] ? 'end' : 'start';
+      const dx = c.lon < HUB[0] ? -8 : 8;
+      g.append('text').attr('x',p[0]+dx).attr('y',p[1]+1).attr('text-anchor',ta)
+        .attr('fill','#d4a843').attr('font-size','9.5').attr('font-family','Inter,sans-serif').attr('font-weight','600').text(c.name);
+      g.append('text').attr('x',p[0]+dx).attr('y',p[1]+12).attr('text-anchor',ta)
+        .attr('fill','#d4a843').attr('font-size','8').attr('font-family','serif').attr('opacity',0.5).text(c.sub);
+      gsap.to(g.node(),{opacity:1,duration:0.4,delay:0.5+i*0.1});
+    });
+
+    // === Hub Russia точка ===
+    svg.append('circle').attr('cx',ruHubPx[0]).attr('cy',ruHubPx[1]).attr('r',6)
+      .attr('fill','#c8bfa0').attr('opacity',0).attr('filter','url(#heroGlow)')
+      .each(function(){ gsap.to(this,{opacity:0.9,duration:0.5,delay:3.4}); });
+    svg.append('text').attr('x',ruHubPx[0]+9).attr('y',ruHubPx[1]+4)
+      .attr('fill','#c8bfa0').attr('font-size','10').attr('font-family','Inter,sans-serif').attr('font-weight','600')
+      .attr('opacity',0).text('Россия').each(function(){ gsap.to(this,{opacity:0.9,duration:0.5,delay:3.4}); });
+
+    // === Hub Казахстан точка ===
+    svg.append('circle').attr('cx',kzHubPx[0]).attr('cy',kzHubPx[1]).attr('r',5.5)
+      .attr('fill','#b8b0a0').attr('opacity',0).attr('filter','url(#heroGlow)')
+      .each(function(){ gsap.to(this,{opacity:0.9,duration:0.5,delay:3.6}); });
+    svg.append('text').attr('x',kzHubPx[0]+8).attr('y',kzHubPx[1]+4)
+      .attr('fill','#b8b0a0').attr('font-size','10').attr('font-family','Inter,sans-serif').attr('font-weight','600')
+      .attr('opacity',0).text('Казахстан').each(function(){ gsap.to(this,{opacity:0.9,duration:0.5,delay:3.6}); });
+
+    // === Маленькие точки городов России и Казахстана ===
+    [...ruCities, ...kzCities].forEach((c,i)=>{
+      const p = proj([c.lon,c.lat]);
+      if (!p) return;
+      const isRu = i < ruCities.length;
+      const col = isRu ? 'rgba(200,191,160,0.65)' : 'rgba(184,176,160,0.65)';
+      const g = svg.append('g').attr('opacity',0);
+      g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2.8).attr('fill',col);
+      g.append('text').attr('x',p[0]+(c.lon>55?7:-7)).attr('y',p[1]+3.5)
+        .attr('text-anchor',c.lon>55?'start':'end')
+        .attr('fill',col).attr('font-size','8').attr('font-family','Inter,sans-serif').text(c.name);
+      gsap.to(g.node(),{opacity:1,duration:0.4,delay: 4 + i*0.1});
+    });
+
+    // === Подписи стран ===
+    const labels = [
+      { text:'КИТАЙ', lon:103, lat:42, color:'rgba(212,168,67,0.28)' },
+      { text:'РОССИЯ', lon:70, lat:65, color:'rgba(200,191,160,0.22)' },
+      { text:'КАЗАХСТАН', lon:55, lat:42, color:'rgba(184,176,160,0.22)' },
+    ];
+    labels.forEach(l=>{
+      const p = proj([l.lon,l.lat]);
+      if (!p) return;
+      svg.append('text').attr('x',p[0]).attr('y',p[1])
+        .attr('text-anchor','middle').attr('fill',l.color)
+        .attr('font-size','8').attr('font-family','Inter,sans-serif')
+        .attr('font-weight','700').attr('letter-spacing','0.2em').attr('opacity',0).text(l.text)
+        .transition().duration(900).delay(700).attr('opacity',1);
+    });
+
+  } catch(err) {
+    console.warn('Hero map failed:', err);
+    if (loader) loader.innerHTML = '<span style="opacity:.35;font-size:11px;color:#9fa8b4">Карта недоступна</span>';
+  }
 }
 
-/* ════════════════════════════════════════
-   LOGISTICS MAP (D3)
-════════════════════════════════════════ */
-function initLogisticsMap() {
-  ScrollTrigger.create({
-    trigger: '#logisticsMapD3',
-    start: 'top 75%',
-    once: true,
-    onEnter: () => {
-      buildD3Map('logisticsMapD3', {
-        center: [78, 50], scale: 290, height: 360, tx: 0.54, ty: 0.52,
-        routes: [
-          { coords: [[116.4,39.9],[95,50],[65,56],[37.6,55.8]], color: '#e8c872' },
-          { coords: [[116.4,39.9],[100,44],[88,46],[76.9,43.2]], color: '#f0a500' },
-          { coords: [[121.5,31.2],[125,25],[115,15],[80,10],[60,20],[45,30],[37.6,55.8]], color: '#7ab8e8' },
-        ],
-        cities: [
-          { name:'Пекин', lon:116.4, lat:39.9, main:true, color:'#d4a843', dx:9 },
-          { name:'Шанхай', lon:121.5, lat:31.2, color:'#d4a843', dx:9 },
-          { name:'Гуанчжоу', lon:113.3, lat:23.1, color:'#d4a843', dx:9 },
-          { name:'Москва', lon:37.6, lat:55.8, main:true, color:'#c8bfa0', dx:-9 },
-          { name:'Алматы', lon:76.9, lat:43.2, main:true, color:'#b8b0a0', dx:9 },
-          { name:'Астана', lon:71.4, lat:51.2, color:'#b8b0a0', dx:-8 },
-        ],
-        labels: [
-          { text:'КИТАЙ', lon:105, lat:36, color:'rgba(212,168,67,0.3)' },
-          { text:'РОССИЯ', lon:70, lat:62, color:'rgba(200,191,160,0.25)' },
-          { text:'КАЗАХСТАН', lon:63, lat:47, color:'rgba(200,191,160,0.25)' },
-        ]
-      });
-    }
-  });
-}
 
 /* ════════════════════════════════════════
    REFRESH ScrollTrigger after fonts load
