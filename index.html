@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>East Meridian — Бизнес-услуги в Китае</title>
+  <meta name="description" content="East Meridian — ваш надёжный партнёр в Китае. Логистика, складские услуги, финансовые операции, поиск поставщиков, регистрация ТМ, услуги переводчика." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ░░░ PRELOADER ░░░ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__ring">
+      <svg viewBox="0 0 100 100" fill="none">
+        <circle cx="50" cy="50" r="44" stroke="#d4a843" stroke-width="1" stroke-dasharray="276" stroke-dashoffset="276" class="preloader__circle"/>
+        <line x1="50" y1="6" x2="50" y2="94" stroke="#d4a843" stroke-width="0.7" opacity="0.4"/>
+        <line x1="6" y1="50" x2="94" y2="50" stroke="#d4a843" stroke-width="0.7" opacity="0.4"/>
+        <circle cx="50" cy="50" r="4" fill="#d4a843" class="preloader__dot"/>
+      </svg>
+    </div>
+    <p class="preloader__text">EAST <span>MERIDIAN</span></p>
+    <p class="preloader__sub">东方子午线</p>
+  </div>
+
+  <!-- ░░░ NAVIGATION ░░░ -->
+  <nav class="nav" id="mainNav">
+    <div class="container nav__container">
+      <a href="#home" class="nav__logo">
+        <svg width="40" height="40" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="44" stroke="#d4a843" stroke-width="1.2"/>
+          <line x1="50" y1="6" x2="50" y2="94" stroke="#d4a843" stroke-width="0.9" opacity="0.6"/>
+          <line x1="6" y1="50" x2="94" y2="50" stroke="#d4a843" stroke-width="0.9" opacity="0.6"/>
+          <ellipse cx="50" cy="50" rx="44" ry="18" stroke="#d4a843" stroke-width="0.7" opacity="0.3"/>
+          <circle cx="50" cy="50" r="5" fill="#d4a843"/>
+          <polygon points="50,8 47,16 50,14 53,16" fill="#d4a843"/>
+          <circle cx="50" cy="6" r="2.5" fill="#d4a843"/>
+        </svg>
+        <div class="nav__brand">
+          <span class="nav__brand-en">EAST MERIDIAN</span>
+          <span class="nav__brand-zh">东方子午线</span>
+        </div>
+      </a>
+
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="#about" class="nav__link">О компании</a></li>
+        <li><a href="#services" class="nav__link">Услуги</a></li>
+        <li><a href="#logistics" class="nav__link">Логистика</a></li>
+        <li><a href="#process" class="nav__link">Как работаем</a></li>
+        <li><a href="#contact" class="nav__link nav__link--cta">Контакты</a></li>
+      </ul>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ░░░ HERO ░░░ -->
+  <section class="hero" id="home">
+    <canvas class="hero__canvas" id="heroCanvas"></canvas>
+    <div class="hero__noise"></div>
+
+    <div class="hero__orbs">
+      <div class="hero__orb orb-1"></div>
+      <div class="hero__orb orb-2"></div>
+      <div class="hero__orb orb-3"></div>
+    </div>
+
+    <div class="container hero__container">
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <span class="hero__eyebrow-dot"></span>
+          <span>Деловой партнёр в Китае с 2018 года</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span class="hero__title-line" id="heroWord1">EAST</span>
+          <span class="hero__title-line hero__title-gold" id="heroWord2">MERIDIAN</span>
+        </h1>
+
+        <p class="hero__chinese">东方子午线</p>
+        <p class="hero__tagline">Логистика · Финансы · Поставщики · Перевод</p>
+        <p class="hero__desc">
+          Полный спектр бизнес-услуг в Китае для предпринимателей<br class="hide-mobile" />
+          из России и Казахстана
+        </p>
+
+        <div class="hero__cta">
+          <a href="#services" class="btn btn-gold">
+            Наши услуги
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-outline">Консультация</a>
+        </div>
+      </div>
+
+      <div class="hero__globe-wrap">
+        <div class="hero__globe">
+          <svg viewBox="0 0 420 420" fill="none" class="hero__globe-svg" id="heroGlobe">
+            <!-- Outer rings -->
+            <circle cx="210" cy="210" r="180" stroke="#d4a843" stroke-width="0.8" opacity="0.12"/>
+            <circle cx="210" cy="210" r="160" stroke="#d4a843" stroke-width="0.5" opacity="0.08"/>
+            <!-- Main globe -->
+            <circle cx="210" cy="210" r="140" stroke="#d4a843" stroke-width="1" opacity="0.25"/>
+            <!-- Latitude lines -->
+            <ellipse cx="210" cy="210" rx="140" ry="46" stroke="#d4a843" stroke-width="0.6" opacity="0.2"/>
+            <ellipse cx="210" cy="210" rx="140" ry="92" stroke="#d4a843" stroke-width="0.6" opacity="0.15"/>
+            <ellipse cx="210" cy="178" rx="130" ry="38" stroke="#d4a843" stroke-width="0.5" opacity="0.12"/>
+            <ellipse cx="210" cy="242" rx="130" ry="38" stroke="#d4a843" stroke-width="0.5" opacity="0.12"/>
+            <!-- Meridians -->
+            <line x1="210" y1="70" x2="210" y2="350" stroke="#d4a843" stroke-width="0.8" opacity="0.25"/>
+            <line x1="70" y1="210" x2="350" y2="210" stroke="#d4a843" stroke-width="0.8" opacity="0.25"/>
+            <line x1="111" y1="111" x2="309" y2="309" stroke="#d4a843" stroke-width="0.5" opacity="0.12"/>
+            <line x1="309" y1="111" x2="111" y2="309" stroke="#d4a843" stroke-width="0.5" opacity="0.12"/>
+
+            <!-- === CHINA === -->
+            <circle cx="300" cy="215" r="10" fill="#d4a843" opacity="0.9" class="pulse-dot"/>
+            <circle cx="300" cy="215" r="20" fill="none" stroke="#d4a843" stroke-width="0.8" opacity="0.4" class="pulse-ring-1"/>
+            <circle cx="300" cy="215" r="32" fill="none" stroke="#d4a843" stroke-width="0.5" opacity="0.2" class="pulse-ring-2"/>
+            <text x="315" y="212" fill="#d4a843" font-size="11" font-family="Inter, sans-serif" font-weight="500">中国</text>
+            <text x="315" y="226" fill="#d4a843" font-size="9" font-family="Inter, sans-serif" opacity="0.6">China</text>
+
+            <!-- === RUSSIA === -->
+            <circle cx="175" cy="130" r="7" fill="#e8d5a0" opacity="0.8" class="pulse-dot-sm"/>
+            <circle cx="175" cy="130" r="14" fill="none" stroke="#e8d5a0" stroke-width="0.7" opacity="0.3" class="pulse-ring-sm"/>
+            <text x="148" y="120" fill="#e8d5a0" font-size="10" font-family="Inter, sans-serif" opacity="0.8">Россия</text>
+
+            <!-- === KAZAKHSTAN === -->
+            <circle cx="220" cy="178" r="5.5" fill="#c8bfa0" opacity="0.75" class="pulse-dot-sm"/>
+            <circle cx="220" cy="178" r="11" fill="none" stroke="#c8bfa0" stroke-width="0.6" opacity="0.25" class="pulse-ring-sm"/>
+            <text x="233" y="175" fill="#c8bfa0" font-size="9" font-family="Inter, sans-serif" opacity="0.7">Казахстан</text>
+
+            <!-- ROUTES (animated) -->
+            <path id="route1" d="M 300,215 Q 250,165 175,130" stroke="#d4a843" stroke-width="1.4" stroke-dasharray="5,3" opacity="0" fill="none"/>
+            <path id="route2" d="M 300,215 Q 270,195 220,178" stroke="#f0c96a" stroke-width="1.4" stroke-dasharray="5,3" opacity="0" fill="none"/>
+
+            <!-- Moving dot on routes -->
+            <circle r="3" fill="#d4a843" opacity="0" id="routeDot1">
+              <animateMotion dur="4s" repeatCount="indefinite" begin="2s">
+                <mpath href="#route1"/>
+              </animateMotion>
+            </circle>
+            <circle r="2.5" fill="#f0c96a" opacity="0" id="routeDot2">
+              <animateMotion dur="3s" repeatCount="indefinite" begin="3s">
+                <mpath href="#route2"/>
+              </animateMotion>
+            </circle>
+
+            <!-- Compass rose top -->
+            <polygon points="210,72 207,82 210,79 213,82" fill="#d4a843" opacity="0.7"/>
+            <text x="206" y="66" fill="#d4a843" font-size="10" font-family="Inter" opacity="0.7">N</text>
+          </svg>
+          <div class="hero__globe-glow"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="hero__statsbar">
+      <div class="container">
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <span class="hero__stat-n" data-count="500">0</span><span class="hero__stat-s">+</span>
+            <span class="hero__stat-l">клиентов</span>
+          </div>
+          <div class="hero__stat-sep"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-n" data-count="7">0</span>
+            <span class="hero__stat-l">лет работы</span>
+          </div>
+          <div class="hero__stat-sep"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-n" data-count="10000">0</span><span class="hero__stat-s">+</span>
+            <span class="hero__stat-l">отправлений</span>
+          </div>
+          <div class="hero__stat-sep"></div>
+          <div class="hero__stat">
+            <span class="hero__stat-n" data-count="20">0</span>
+            <span class="hero__stat-l">городов Китая</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <div class="hero__scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ░░░ ABOUT ░░░ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about__inner">
+        <div class="about__visual">
+          <div class="about__card-stack">
+            <div class="about__card about__card--back">
+              <div class="about__card-inner">
+                <span class="about__card-label">Наша сеть</span>
+                <div class="about__card-map">
+                  <svg viewBox="0 0 220 160" fill="none">
+                    <!-- Simplified Asia schematic -->
+                    <rect width="220" height="160" fill="none"/>
+                    <!-- Grid -->
+                    <line x1="0" y1="40" x2="220" y2="40" stroke="#d4a843" stroke-width="0.3" opacity="0.2"/>
+                    <line x1="0" y1="80" x2="220" y2="80" stroke="#d4a843" stroke-width="0.3" opacity="0.2"/>
+                    <line x1="0" y1="120" x2="220" y2="120" stroke="#d4a843" stroke-width="0.3" opacity="0.2"/>
+                    <line x1="55" y1="0" x2="55" y2="160" stroke="#d4a843" stroke-width="0.3" opacity="0.2"/>
+                    <line x1="110" y1="0" x2="110" y2="160" stroke="#d4a843" stroke-width="0.3" opacity="0.2"/>
+                    <line x1="165" y1="0" x2="165" y2="160" stroke="#d4a843" stroke-width="0.3" opacity="0.2"/>
+
+                    <!-- Nodes: China main -->
+                    <circle cx="160" cy="95" r="6" fill="#d4a843" opacity="0.9"/>
+                    <circle cx="160" cy="95" r="12" fill="#d4a843" opacity="0.15"/>
+                    <text x="170" y="98" fill="#d4a843" font-size="9" font-family="Inter">Пекин</text>
+
+                    <circle cx="175" cy="115" r="4" fill="#d4a843" opacity="0.6"/>
+                    <text x="182" y="118" fill="#d4a843" font-size="8" font-family="Inter">Шанхай</text>
+
+                    <circle cx="168" cy="128" r="4" fill="#d4a843" opacity="0.6"/>
+                    <text x="175" y="131" fill="#d4a843" font-size="8" font-family="Inter">Гуанчжоу</text>
+
+                    <!-- Russia -->
+                    <circle cx="75" cy="35" r="5" fill="#c8bfa0" opacity="0.8"/>
+                    <text x="60" y="30" fill="#c8bfa0" font-size="8" font-family="Inter">Москва</text>
+
+                    <!-- Kazakhstan -->
+                    <circle cx="100" cy="72" r="4.5" fill="#c8bfa0" opacity="0.7"/>
+                    <text x="85" y="67" fill="#c8bfa0" font-size="8" font-family="Inter">Алматы</text>
+
+                    <!-- Routes -->
+                    <path d="M 160,95 Q 120,65 75,35" stroke="#d4a843" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+                    <path d="M 160,95 Q 135,83 100,72" stroke="#f0c96a" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+                    <path d="M 175,115 Q 140,120 168,128" stroke="#d4a843" stroke-width="0.5" opacity="0.3"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <div class="about__card about__card--front">
+              <span class="about__card-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 3 L29 10 L29 22 L16 29 L3 22 L3 10 Z" stroke="#d4a843" stroke-width="1.5" stroke-linejoin="round"/>
+                  <circle cx="16" cy="16" r="4" fill="#d4a843" opacity="0.8"/>
+                </svg>
+              </span>
+              <p class="about__card-quote">"Ваш бизнес в Китае — наша ответственность"</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__text">
+          <span class="section-eyebrow">О компании</span>
+          <h2 class="section-title">East Meridian —<br><em>ваш мост в Китай</em></h2>
+          <p class="about__lead">
+            С 2018 года мы помогаем предпринимателям из России и Казахстана
+            строить надёжные и прибыльные отношения с китайским рынком.
+          </p>
+          <p class="about__body">
+            Наша команда работает по всему Китаю: от крупных торговых центров
+            Гуанчжоу и Иу до производственных районов Шэньчжэня и Ханчжоу.
+            Мы знаем рынок изнутри — наши специалисты живут и работают в Китае,
+            говорят на китайском и понимают местную деловую культуру.
+          </p>
+          <div class="about__features">
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <strong>Офисы в Китае</strong>
+                <span>Гуанчжоу, Иу, Шэньчжэнь</span>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <strong>Команда профессионалов</strong>
+                <span>Носители языка и эксперты рынка</span>
+              </div>
+            </div>
+            <div class="about__feature">
+              <div class="about__feature-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+              <div>
+                <strong>Гарантия сохранности</strong>
+                <span>Страхование грузов и финансовая ответственность</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ SERVICES ░░░ -->
+  <section class="services" id="services">
+    <div class="services__bg-pattern"></div>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Что мы предлагаем</span>
+        <h2 class="section-title">Наши услуги</h2>
+        <p class="section-desc">
+          Полный спектр услуг для ведения бизнеса с Китаем —<br class="hide-mobile"/>
+          от логистики до юридической защиты бренда
+        </p>
+      </div>
+
+      <div class="services__grid">
+
+        <!-- 01 Логистика -->
+        <div class="svc-card" data-index="0">
+          <div class="svc-card__num">01</div>
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <!-- Plane -->
+              <path d="M6 38L18 26l-7-4 2-8 8 4L32 6l4 2-8 10 12-4 2 8-8-2-16 16" stroke="#d4a843" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Ship -->
+              <path d="M8 50L12 44H36L40 50H8Z" stroke="#d4a843" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M18 44V40H30V44" stroke="#d4a843" stroke-width="1.4" stroke-linejoin="round"/>
+              <!-- Train car -->
+              <rect x="42" y="42" width="16" height="10" rx="1.5" stroke="#d4a843" stroke-width="1.4"/>
+              <circle cx="45" cy="52" r="2" stroke="#d4a843" stroke-width="1.2"/>
+              <circle cx="55" cy="52" r="2" stroke="#d4a843" stroke-width="1.2"/>
+              <!-- Water line -->
+              <path d="M6 55Q12 53 18 55Q24 57 30 55Q36 53 42 55Q48 57 56 55" stroke="#d4a843" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3 class="svc-card__title">Логистика</h3>
+          <p class="svc-card__desc">Авиа, ж/д и морская доставка из Китая в Россию и Казахстан. Организация локальной доставки по Китаю.</p>
+          <ul class="svc-card__list">
+            <li>Авиадоставка — от 3 дней</li>
+            <li>Ж/д — от 12 дней</li>
+            <li>Морская — FCL/LCL</li>
+            <li>Доставка по Китаю</li>
+          </ul>
+          <a href="#logistics" class="svc-card__link">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </div>
+
+        <!-- 02 Склад -->
+        <div class="svc-card" data-index="1">
+          <div class="svc-card__num">02</div>
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <path d="M8 26L32 14L56 26V54H8V26Z" stroke="#d4a843" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M24 54V38H40V54" stroke="#d4a843" stroke-width="1.4" stroke-linejoin="round"/>
+              <rect x="10" y="32" width="11" height="9" rx="1" stroke="#d4a843" stroke-width="1.2"/>
+              <rect x="43" y="32" width="11" height="9" rx="1" stroke="#d4a843" stroke-width="1.2"/>
+              <rect x="15" y="42" width="6" height="6" rx="0.5" stroke="#d4a843" stroke-width="1" opacity="0.5"/>
+              <rect x="43" y="42" width="6" height="6" rx="0.5" stroke="#d4a843" stroke-width="1" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="svc-card__title">Складские услуги</h3>
+          <p class="svc-card__desc">Приём и обработка грузов на складах в Китае. Упаковка, маркировка, грузчики, временное хранение.</p>
+          <ul class="svc-card__list">
+            <li>Приём и проверка грузов</li>
+            <li>Упаковка и маркировка</li>
+            <li>Услуги грузчиков</li>
+            <li>Временное хранение</li>
+          </ul>
+          <a href="#contact" class="svc-card__link">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </div>
+
+        <!-- 03 Финансы -->
+        <div class="svc-card" data-index="2">
+          <div class="svc-card__num">03</div>
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="32" r="20" stroke="#d4a843" stroke-width="1.4"/>
+              <path d="M32 18v3M32 43v3" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M26 25C26 25 28 22 32 22C36 22 38 24.5 38 27C38 33 26 31 26 37C26 40 28.5 43 32 43C35.5 43 38 40 38 40" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round"/>
+              <!-- Arrows -->
+              <path d="M48 12L56 12L56 20" stroke="#d4a843" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+              <path d="M56 12L48 20" stroke="#d4a843" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+              <path d="M16 52L8 52L8 44" stroke="#d4a843" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+              <path d="M8 52L16 44" stroke="#d4a843" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="svc-card__title">Финансовые операции</h3>
+          <p class="svc-card__desc">Переводы денег в Китай, оплата поставщикам. Выкуп товаров с торговых площадок 1688, Taobao, Pinduoduo.</p>
+          <ul class="svc-card__list">
+            <li>Переводы юаней в Китай</li>
+            <li>Оплата поставщикам</li>
+            <li>Выкуп с 1688, Taobao</li>
+            <li>Pinduoduo, JD.com и др.</li>
+          </ul>
+          <a href="#contact" class="svc-card__link">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </div>
+
+        <!-- 04 Поставщики -->
+        <div class="svc-card" data-index="3">
+          <div class="svc-card__num">04</div>
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <circle cx="27" cy="27" r="16" stroke="#d4a843" stroke-width="1.4"/>
+              <path d="M38 38L52 52" stroke="#d4a843" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M21 27L25 31L33 23" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Factory icon -->
+              <path d="M8 56V46L16 40V46L24 40V56Z" stroke="#d4a843" stroke-width="1.2" stroke-linejoin="round" opacity="0.4"/>
+              <rect x="10" y="50" width="3" height="6" stroke="#d4a843" stroke-width="1" opacity="0.3"/>
+              <rect x="16" y="50" width="3" height="6" stroke="#d4a843" stroke-width="1" opacity="0.3"/>
+            </svg>
+          </div>
+          <h3 class="svc-card__title">Поиск поставщиков</h3>
+          <p class="svc-card__desc">Поиск надёжных производителей по всему Китаю. Инспекция товара и контроль качества перед отправкой.</p>
+          <ul class="svc-card__list">
+            <li>Поиск производителей</li>
+            <li>Проверка поставщика</li>
+            <li>Инспекция товара</li>
+            <li>Контроль качества (QC)</li>
+          </ul>
+          <a href="#contact" class="svc-card__link">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </div>
+
+        <!-- 05 Торговая марка -->
+        <div class="svc-card" data-index="4">
+          <div class="svc-card__num">05</div>
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="12" y="8" width="40" height="48" rx="3" stroke="#d4a843" stroke-width="1.4"/>
+              <path d="M20 22L44 22" stroke="#d4a843" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+              <path d="M20 30L38 30" stroke="#d4a843" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+              <circle cx="32" cy="43" r="9" stroke="#d4a843" stroke-width="1.4"/>
+              <path d="M28 43.5L30.5 46L36 41" stroke="#d4a843" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- TM badge -->
+              <circle cx="46" cy="20" r="8" fill="#0c1220" stroke="#d4a843" stroke-width="1"/>
+              <text x="41.5" y="23.5" fill="#d4a843" font-size="7" font-weight="700" font-family="Inter">TM</text>
+            </svg>
+          </div>
+          <h3 class="svc-card__title">Регистрация торговой марки</h3>
+          <p class="svc-card__desc">Профессиональная регистрация торговой марки в Китае через CNIPA. Защита вашего бренда на китайском рынке.</p>
+          <ul class="svc-card__list">
+            <li>Анализ и проверка ТМ</li>
+            <li>Подача заявки в CNIPA</li>
+            <li>Защита бренда в Китае</li>
+            <li>Юридическое сопровождение</li>
+          </ul>
+          <a href="#contact" class="svc-card__link">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </div>
+
+        <!-- 06 Переводчик -->
+        <div class="svc-card" data-index="5">
+          <div class="svc-card__num">06</div>
+          <div class="svc-card__icon">
+            <svg viewBox="0 0 64 64" fill="none">
+              <!-- Left bubble (Chinese) -->
+              <path d="M6 10L38 10L38 36L26 36L18 44L18 36L6 36Z" stroke="#d4a843" stroke-width="1.4" stroke-linejoin="round"/>
+              <!-- Right bubble (Russian) -->
+              <path d="M58 28L30 28L30 50L42 50L50 56L50 50L58 50Z" stroke="#d4a843" stroke-width="1.4" stroke-linejoin="round" opacity="0.7"/>
+              <!-- Chinese char -->
+              <text x="15" y="28" fill="#d4a843" font-size="14" font-family="serif" font-weight="400">文</text>
+              <!-- Letter A -->
+              <text x="38" y="44" fill="#d4a843" font-size="12" font-family="sans-serif" font-weight="500">А</text>
+            </svg>
+          </div>
+          <h3 class="svc-card__title">Услуги переводчика</h3>
+          <p class="svc-card__desc">Письменный и устный перевод. Сопровождение переводчика на переговорах, выставках и производстве в Китае.</p>
+          <ul class="svc-card__list">
+            <li>Письменный перевод</li>
+            <li>Устный перевод</li>
+            <li>Сопровождение в Китае</li>
+            <li>Переговоры с поставщиками</li>
+          </ul>
+          <a href="#contact" class="svc-card__link">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ LOGISTICS ░░░ -->
+  <section class="logistics" id="logistics">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Маршруты и сроки</span>
+        <h2 class="section-title">Логистика из Китая</h2>
+        <p class="section-desc">Три способа доставки вашего груза — выберите оптимальный по скорости и стоимости</p>
+      </div>
+
+      <!-- Route Map -->
+      <div class="logistics__map-wrap">
+        <div class="logistics__map">
+          <svg viewBox="0 0 800 420" fill="none" class="logistics__map-svg" id="logisticsMap">
+            <!-- Background grid -->
+            <defs>
+              <pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#d4a843" stroke-width="0.2" opacity="0.3"/>
+              </pattern>
+              <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#d4a843" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#d4a843" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="800" height="420" fill="url(#mapGrid)" opacity="0.4"/>
+
+            <!-- === REGION LABELS === -->
+            <text x="560" y="30" fill="#d4a843" font-size="11" font-family="Inter" opacity="0.5" font-weight="500">КИТАЙ</text>
+            <text x="120" y="60" fill="#9fa8b4" font-size="11" font-family="Inter" opacity="0.5">РОССИЯ</text>
+            <text x="260" y="180" fill="#9fa8b4" font-size="11" font-family="Inter" opacity="0.5">КАЗАХСТАН</text>
+
+            <!-- === CITY NODES === -->
+            <!-- Beijing -->
+            <g class="map-node" id="nodeBeijing">
+              <circle cx="580" cy="140" r="16" fill="url(#nodeGlow)"/>
+              <circle cx="580" cy="140" r="7" fill="#d4a843" opacity="0.9"/>
+              <circle cx="580" cy="140" r="11" fill="none" stroke="#d4a843" stroke-width="0.8" opacity="0.4"/>
+              <text x="594" y="136" fill="#d4a843" font-size="10" font-family="Inter" font-weight="600">Пекин</text>
+              <text x="594" y="149" fill="#d4a843" font-size="9" font-family="Inter" opacity="0.5">北京</text>
+            </g>
+            <!-- Shanghai -->
+            <g class="map-node" id="nodeShanghai">
+              <circle cx="620" cy="195" r="5.5" fill="#d4a843" opacity="0.7"/>
+              <text x="630" y="199" fill="#d4a843" font-size="9" font-family="Inter">Шанхай</text>
+            </g>
+            <!-- Guangzhou -->
+            <g class="map-node" id="nodeGuangzhou">
+              <circle cx="600" cy="255" r="5.5" fill="#d4a843" opacity="0.7"/>
+              <text x="612" y="259" fill="#d4a843" font-size="9" font-family="Inter">Гуанчжоу</text>
+            </g>
+            <!-- Yiwu -->
+            <g class="map-node">
+              <circle cx="635" cy="220" r="4" fill="#d4a843" opacity="0.5"/>
+              <text x="643" y="224" fill="#d4a843" font-size="8" font-family="Inter" opacity="0.7">Иу</text>
+            </g>
+
+            <!-- Moscow -->
+            <g class="map-node" id="nodeMoscow">
+              <circle cx="160" cy="90" r="16" fill="url(#nodeGlow)" opacity="0.6"/>
+              <circle cx="160" cy="90" r="7" fill="#c8bfa0" opacity="0.85"/>
+              <circle cx="160" cy="90" r="11" fill="none" stroke="#c8bfa0" stroke-width="0.8" opacity="0.35"/>
+              <text x="174" y="87" fill="#c8bfa0" font-size="10" font-family="Inter" font-weight="600">Москва</text>
+              <text x="174" y="100" fill="#c8bfa0" font-size="8" font-family="Inter" opacity="0.5">Россия</text>
+            </g>
+            <!-- SPb -->
+            <g class="map-node">
+              <circle cx="130" cy="62" r="4" fill="#c8bfa0" opacity="0.55"/>
+              <text x="138" y="66" fill="#c8bfa0" font-size="8" font-family="Inter" opacity="0.7">С.-Петербург</text>
+            </g>
+
+            <!-- Almaty -->
+            <g class="map-node" id="nodeAlmaty">
+              <circle cx="340" cy="200" r="14" fill="url(#nodeGlow)" opacity="0.5"/>
+              <circle cx="340" cy="200" r="6" fill="#c8bfa0" opacity="0.8"/>
+              <circle cx="340" cy="200" r="10" fill="none" stroke="#c8bfa0" stroke-width="0.7" opacity="0.3"/>
+              <text x="352" y="197" fill="#c8bfa0" font-size="10" font-family="Inter" font-weight="600">Алматы</text>
+              <text x="352" y="210" fill="#c8bfa0" font-size="8" font-family="Inter" opacity="0.5">Казахстан</text>
+            </g>
+            <!-- Astana -->
+            <g class="map-node">
+              <circle cx="290" cy="155" r="4" fill="#c8bfa0" opacity="0.55"/>
+              <text x="298" y="159" fill="#c8bfa0" font-size="8" font-family="Inter" opacity="0.7">Астана</text>
+            </g>
+
+            <!-- === ROUTE LINES === -->
+            <!-- Air route: Beijing -> Moscow (curved via north) -->
+            <path id="airRoute" d="M 580,140 Q 440,40 160,90"
+              stroke="#e8c872" stroke-width="1.8" stroke-dasharray="7,4" opacity="0" fill="none"/>
+            <!-- Rail route: Beijing -> Almaty (via central asia) -->
+            <path id="railRoute" d="M 580,140 Q 500,160 420,175 Q 380,185 340,200"
+              stroke="#f0a500" stroke-width="1.8" stroke-dasharray="7,4" opacity="0" fill="none"/>
+            <!-- Sea route: Shanghai -> Moscow (south-west, conceptual) -->
+            <path id="seaRoute" d="M 620,195 Q 550,290 400,320 Q 280,340 200,260 Q 160,220 160,90"
+              stroke="#7ab8e8" stroke-width="1.8" stroke-dasharray="7,4" opacity="0" fill="none"/>
+
+            <!-- Moving dots on routes -->
+            <circle r="4" fill="#e8c872" opacity="0" id="airDot">
+              <animateMotion dur="5s" repeatCount="indefinite" begin="3s">
+                <mpath href="#airRoute"/>
+              </animateMotion>
+            </circle>
+            <circle r="4" fill="#f0a500" opacity="0" id="railDot">
+              <animateMotion dur="7s" repeatCount="indefinite" begin="3.5s">
+                <mpath href="#railRoute"/>
+              </animateMotion>
+            </circle>
+            <circle r="4" fill="#7ab8e8" opacity="0" id="seaDot">
+              <animateMotion dur="10s" repeatCount="indefinite" begin="4s">
+                <mpath href="#seaRoute"/>
+              </animateMotion>
+            </circle>
+
+            <!-- Legend -->
+            <line x1="20" y1="360" x2="60" y2="360" stroke="#e8c872" stroke-width="2" stroke-dasharray="6,3"/>
+            <text x="68" y="364" fill="#e8c872" font-size="10" font-family="Inter">Авиа</text>
+            <line x1="120" y1="360" x2="160" y2="360" stroke="#f0a500" stroke-width="2" stroke-dasharray="6,3"/>
+            <text x="168" y="364" fill="#f0a500" font-size="10" font-family="Inter">Ж/д</text>
+            <line x1="220" y1="360" x2="260" y2="360" stroke="#7ab8e8" stroke-width="2" stroke-dasharray="6,3"/>
+            <text x="268" y="364" fill="#7ab8e8" font-size="10" font-family="Inter">Море</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Route Cards -->
+      <div class="logistics__routes">
+
+        <div class="route-card route-card--air" id="routeAir">
+          <div class="route-card__badge">Быстро</div>
+          <div class="route-card__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" stroke="#e8c872" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="route-card__title">Авиадоставка</h3>
+          <div class="route-card__time">3–7 <span>дней</span></div>
+          <p class="route-card__desc">Оптимально для срочных и дорогостоящих грузов. Прямые рейсы из Пекина, Шанхая, Гуанчжоу.</p>
+          <ul class="route-card__details">
+            <li><span>Вес:</span> до 1000 кг</li>
+            <li><span>Маршрут:</span> Китай → Москва/Алматы</li>
+            <li><span>Тип груза:</span> электроника, одежда, запчасти</li>
+          </ul>
+        </div>
+
+        <div class="route-card route-card--rail" id="routeRail">
+          <div class="route-card__badge">Оптимально</div>
+          <div class="route-card__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="12" rx="2" stroke="#f0a500" stroke-width="1.5"/>
+              <path d="M3 10h18" stroke="#f0a500" stroke-width="1.5"/>
+              <circle cx="7.5" cy="19" r="2" stroke="#f0a500" stroke-width="1.5"/>
+              <circle cx="16.5" cy="19" r="2" stroke="#f0a500" stroke-width="1.5"/>
+              <path d="M7.5 17V16M16.5 17V16" stroke="#f0a500" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="route-card__title">Железнодорожная</h3>
+          <div class="route-card__time">12–18 <span>дней</span></div>
+          <p class="route-card__desc">Золотая середина между скоростью и ценой. Контейнерные поезда через Казахстан.</p>
+          <ul class="route-card__details">
+            <li><span>Объём:</span> FCL и LCL</li>
+            <li><span>Маршрут:</span> Китай → Россия/Казахстан</li>
+            <li><span>Тип груза:</span> товары народного потребления</li>
+          </ul>
+        </div>
+
+        <div class="route-card route-card--sea" id="routeSea">
+          <div class="route-card__badge">Экономично</div>
+          <div class="route-card__icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path d="M2 20Q6 17 12 20Q18 23 22 20" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M6 16L4 20" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18 16L20 20" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M6 16H18L16 8H8L6 16Z" stroke="#7ab8e8" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M12 8V4M12 4L9 7M12 4L15 7" stroke="#7ab8e8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="route-card__title">Морская доставка</h3>
+          <div class="route-card__time">30–45 <span>дней</span></div>
+          <p class="route-card__desc">Самый экономичный вариант для больших объёмов. FCL и LCL контейнеры из портов Китая.</p>
+          <ul class="route-card__details">
+            <li><span>Объём:</span> от 1 CBM до FCL</li>
+            <li><span>Маршрут:</span> Китай → Владивосток/СПб</li>
+            <li><span>Тип груза:</span> крупные партии, оборудование</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Local delivery highlight -->
+      <div class="logistics__local">
+        <div class="logistics__local-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#d4a843" stroke-width="1.5"/>
+            <circle cx="12" cy="9" r="2.5" stroke="#d4a843" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="logistics__local-text">
+          <h3>Локальная доставка по Китаю</h3>
+          <p>Организуем доставку товара от поставщика или с фабрики прямо на наш склад или до любой точки в Китае. Курьеры, грузовики, экспресс-доставка внутри страны.</p>
+        </div>
+        <a href="#contact" class="btn btn-outline">Узнать тарифы</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ STATS ░░░ -->
+  <section class="stats-section">
+    <div class="stats-section__bg"></div>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-count="500" data-suffix="+">
+          <div class="stat-item__number"><span class="counter">0</span>+</div>
+          <div class="stat-item__label">Клиентов в базе</div>
+          <div class="stat-item__sub">Россия и Казахстан</div>
+        </div>
+        <div class="stat-item" data-count="10000" data-suffix="+">
+          <div class="stat-item__number"><span class="counter">0</span>+</div>
+          <div class="stat-item__label">Выполненных отправлений</div>
+          <div class="stat-item__sub">За всё время работы</div>
+        </div>
+        <div class="stat-item" data-count="7" data-suffix="">
+          <div class="stat-item__number"><span class="counter">0</span></div>
+          <div class="stat-item__label">Лет на рынке</div>
+          <div class="stat-item__sub">С 2018 года</div>
+        </div>
+        <div class="stat-item" data-count="20" data-suffix="+">
+          <div class="stat-item__number"><span class="counter">0</span>+</div>
+          <div class="stat-item__label">Городов Китая</div>
+          <div class="stat-item__sub">Присутствие и партнёры</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ PROCESS ░░░ -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Работа с нами</span>
+        <h2 class="section-title">Как мы работаем</h2>
+        <p class="section-desc">Простой и прозрачный процесс от первого контакта до получения товара</p>
+      </div>
+
+      <div class="process__track">
+        <div class="process__line" id="processLine"></div>
+
+        <div class="process__steps">
+
+          <div class="process__step" data-step="1">
+            <div class="process__step-bubble">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="process__step-content">
+              <span class="process__step-num">01</span>
+              <h3>Заявка и консультация</h3>
+              <p>Вы оставляете заявку. Наш менеджер связывается с вами в течение 30 минут, уточняет детали и предлагает оптимальное решение.</p>
+            </div>
+          </div>
+
+          <div class="process__step" data-step="2">
+            <div class="process__step-bubble">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="process__step-content">
+              <span class="process__step-num">02</span>
+              <h3>Расчёт и договор</h3>
+              <p>Готовим точный расчёт стоимости, сроков и условий. Заключаем договор с полной ответственностью за груз.</p>
+            </div>
+          </div>
+
+          <div class="process__step" data-step="3">
+            <div class="process__step-bubble">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="#d4a843" stroke-width="1.8"/>
+                <path d="M12 6v6l4 2" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="process__step-content">
+              <span class="process__step-num">03</span>
+              <h3>Выполнение заказа</h3>
+              <p>Наши специалисты в Китае берутся за работу: находят поставщика, проверяют товар, организуют оплату и упаковку.</p>
+            </div>
+          </div>
+
+          <div class="process__step" data-step="4">
+            <div class="process__step-bubble">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <path d="M5 8h14M5 8a2 2 0 1 0 0-4h-.5A2.5 2.5 0 0 0 2 6.5V8M5 8v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M19 8a2 2 0 1 0 0-4h.5A2.5 2.5 0 0 1 22 6.5V8" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="process__step-content">
+              <span class="process__step-num">04</span>
+              <h3>Отправка и трекинг</h3>
+              <p>Передаём груз перевозчику и предоставляем трекинг-номер. Вы наблюдаете за движением груза в режиме реального времени.</p>
+            </div>
+          </div>
+
+          <div class="process__step" data-step="5">
+            <div class="process__step-bubble">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                <polyline points="20 6 9 17 4 12" stroke="#d4a843" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="process__step-content">
+              <span class="process__step-num">05</span>
+              <h3>Доставка и поддержка</h3>
+              <p>Груз прибывает к вам. Мы помогаем с таможенным оформлением и остаёмся на связи для будущих заказов.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ PLATFORMS ░░░ -->
+  <section class="platforms">
+    <div class="container">
+      <div class="platforms__inner">
+        <div class="platforms__text">
+          <span class="section-eyebrow">Финансовые операции</span>
+          <h2 class="section-title">Выкуп с любых<br><em>площадок Китая</em></h2>
+          <p>Мы работаем со всеми крупными торговыми платформами Китая. Вам не нужен китайский банковский счёт — мы берём на себя оплату и логистику выкупа.</p>
+          <ul class="platforms__list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Перевод юаней в Китай без ограничений
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Прямая оплата китайским поставщикам
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Фиксированный курс на момент оплаты
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn-gold">Перевести деньги в Китай</a>
+        </div>
+        <div class="platforms__icons">
+          <div class="platform-badge" style="--delay: 0s">
+            <div class="platform-badge__inner">
+              <span class="platform-badge__name">1688</span>
+              <span class="platform-badge__sub">Alibaba B2B</span>
+            </div>
+          </div>
+          <div class="platform-badge" style="--delay: 0.1s">
+            <div class="platform-badge__inner">
+              <span class="platform-badge__name">淘宝</span>
+              <span class="platform-badge__sub">Taobao</span>
+            </div>
+          </div>
+          <div class="platform-badge" style="--delay: 0.2s">
+            <div class="platform-badge__inner">
+              <span class="platform-badge__name">拼多多</span>
+              <span class="platform-badge__sub">Pinduoduo</span>
+            </div>
+          </div>
+          <div class="platform-badge" style="--delay: 0.3s">
+            <div class="platform-badge__inner">
+              <span class="platform-badge__name">京东</span>
+              <span class="platform-badge__sub">JD.com</span>
+            </div>
+          </div>
+          <div class="platform-badge" style="--delay: 0.4s">
+            <div class="platform-badge__inner">
+              <span class="platform-badge__name">天猫</span>
+              <span class="platform-badge__sub">Tmall</span>
+            </div>
+          </div>
+          <div class="platform-badge" style="--delay: 0.5s">
+            <div class="platform-badge__inner">
+              <span class="platform-badge__name">微信</span>
+              <span class="platform-badge__sub">WeChat Pay</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ WHY US ░░░ -->
+  <section class="why-us">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Наши преимущества</span>
+        <h2 class="section-title">Почему East Meridian?</h2>
+      </div>
+      <div class="why-us__grid">
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Команда в Китае</h3>
+          <p>Наши сотрудники живут и работают в Китае. Мы знаем язык, культуру и деловой этикет — это гарантирует лучшие условия с поставщиками.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Надёжность и гарантии</h3>
+          <p>Работаем по договору. Финансовая ответственность за сохранность груза. Страхование, чёткие сроки и полная прозрачность операций.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#d4a843" stroke-width="1.8"/>
+              <path d="M12 6v6l4 2" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Быстрая реакция</h3>
+          <p>Отвечаем в течение 30 минут в рабочее время (UTC+8 и UTC+3). Персональный менеджер всегда на связи в WhatsApp и WeChat.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <line x1="12" y1="1" x2="12" y2="23" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Прозрачное ценообразование</h3>
+          <p>Никаких скрытых комиссий. Чёткий расчёт стоимости до начала работы. Фиксированный курс юаня на момент оплаты.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#d4a843" stroke-width="1.8"/>
+              <circle cx="12" cy="10" r="3" stroke="#d4a843" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3>Широкая география</h3>
+          <p>Партнёры в 20+ городах Китая. Гуанчжоу, Шэньчжэнь, Иу, Шанхай, Пекин, Ханчжоу — работаем там, где нужно вам.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="16" y1="13" x2="8" y2="13" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round"/>
+              <line x1="16" y1="17" x2="8" y2="17" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round"/>
+              <polyline points="10 9 9 9 8 9" stroke="#d4a843" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>Полная документация</h3>
+          <p>Сопроводительные документы, инвойсы, CMR, коносаменты — все бумаги оформляем правильно с первого раза.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ CONTACT ░░░ -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact__inner">
+        <div class="contact__info">
+          <span class="section-eyebrow">Связаться с нами</span>
+          <h2 class="section-title">Начните работу<br><em>с Китаем сегодня</em></h2>
+          <p class="contact__lead">Оставьте заявку — наш менеджер свяжется с вами в течение 30 минут и ответит на все вопросы.</p>
+
+          <div class="contact__channels">
+            <a href="https://wa.me/your_number" class="contact__channel">
+              <div class="contact__channel-icon contact__channel-icon--wa">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="contact__channel-label">WhatsApp</span>
+                <span class="contact__channel-val">Написать нам</span>
+              </div>
+            </a>
+            <a href="weixin://" class="contact__channel">
+              <div class="contact__channel-icon contact__channel-icon--wc">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M9 11C9 7.13 12.58 4 17 4C21.42 4 25 7.13 25 11C25 14.87 21.42 18 17 18C16.07 18 15.18 17.86 14.36 17.6L11 19L12.14 16.14C10.22 15.03 9 13.12 9 11Z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 8C2 5.24 4.69 3 8 3C9.56 3 10.97 3.54 12 4.44" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="contact__channel-label">WeChat</span>
+                <span class="contact__channel-val">eastmeridian_cn</span>
+              </div>
+            </a>
+            <a href="mailto:info@eastmeridian.com" class="contact__channel">
+              <div class="contact__channel-icon contact__channel-icon--em">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="22,6 12,13 2,6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div>
+                <span class="contact__channel-label">Email</span>
+                <span class="contact__channel-val">info@eastmeridian.com</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="contact__offices">
+            <h4>Наши офисы</h4>
+            <div class="contact__office">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#d4a843" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#d4a843" stroke-width="2"/></svg>
+              <span><strong>Гуанчжоу, Китай</strong> — главный офис</span>
+            </div>
+            <div class="contact__office">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#d4a843" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#d4a843" stroke-width="2"/></svg>
+              <span><strong>Москва, Россия</strong> — представительство</span>
+            </div>
+            <div class="contact__office">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#d4a843" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#d4a843" stroke-width="2"/></svg>
+              <span><strong>Алматы, Казахстан</strong> — представительство</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact__form-wrap">
+          <form class="contact-form" id="contactForm">
+            <h3 class="contact-form__title">Оставить заявку</h3>
+
+            <div class="form-group">
+              <label class="form-label">Ваше имя</label>
+              <input type="text" class="form-input" placeholder="Иван Иванов" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Телефон / WhatsApp</label>
+                <input type="tel" class="form-input" placeholder="+7 900 000-00-00" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" placeholder="email@company.com" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Нужная услуга</label>
+              <select class="form-select">
+                <option value="">— Выберите услугу —</option>
+                <option>Логистика (авиа/ж/д/море)</option>
+                <option>Складские услуги</option>
+                <option>Перевод денег / оплата поставщику</option>
+                <option>Поиск поставщика / инспекция</option>
+                <option>Регистрация торговой марки</option>
+                <option>Услуги переводчика</option>
+                <option>Несколько услуг</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Комментарий</label>
+              <textarea class="form-textarea" placeholder="Опишите ваш запрос: товар, объём, сроки..." rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold btn-full">
+              <span>Отправить заявку</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <p class="form-note">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░░ FOOTER ░░░ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#home" class="nav__logo">
+            <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="44" stroke="#d4a843" stroke-width="1.2" opacity="0.7"/>
+              <line x1="50" y1="6" x2="50" y2="94" stroke="#d4a843" stroke-width="0.9" opacity="0.4"/>
+              <line x1="6" y1="50" x2="94" y2="50" stroke="#d4a843" stroke-width="0.9" opacity="0.4"/>
+              <circle cx="50" cy="50" r="5" fill="#d4a843" opacity="0.8"/>
+            </svg>
+            <div class="nav__brand">
+              <span class="nav__brand-en" style="font-size:14px">EAST MERIDIAN</span>
+              <span class="nav__brand-zh" style="font-size:11px">东方子午线</span>
+            </div>
+          </a>
+          <p>Ваш надёжный партнёр<br>по бизнесу в Китае</p>
+        </div>
+
+        <div class="footer__links">
+          <h4>Услуги</h4>
+          <ul>
+            <li><a href="#logistics">Логистика</a></li>
+            <li><a href="#services">Складские услуги</a></li>
+            <li><a href="#services">Финансовые операции</a></li>
+            <li><a href="#services">Поиск поставщиков</a></li>
+            <li><a href="#services">Регистрация ТМ</a></li>
+            <li><a href="#services">Услуги переводчика</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__links">
+          <h4>Компания</h4>
+          <ul>
+            <li><a href="#about">О компании</a></li>
+            <li><a href="#process">Как работаем</a></li>
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__contact">
+          <h4>Контакты</h4>
+          <p>Гуанчжоу, Китай<br>Москва, Россия<br>Алматы, Казахстан</p>
+          <p><a href="mailto:info@eastmeridian.com">info@eastmeridian.com</a></p>
+          <p>WeChat: eastmeridian_cn</p>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2018–2026 East Meridian. Все права защищены.</p>
+        <p class="footer__made">Бизнес-услуги в Китае · 东方子午线</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
