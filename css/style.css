@@ -418,44 +418,31 @@ button { cursor: pointer; border: none; background: none; }
   opacity: 0;
 }
 
-/* Globe visual */
+/* Hero Map */
 .hero__globe-wrap {
   flex-shrink: 0;
-  width: 380px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 420px;
+  height: 460px;
   position: relative;
 }
-.hero__globe {
+.hero__map-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(212,168,67,.18);
+  background: rgba(6,9,18,.65);
   position: relative;
-  width: 380px;
-  height: 380px;
+  box-shadow: 0 0 80px rgba(212,168,67,.06), inset 0 0 40px rgba(212,168,67,.03);
 }
-.hero__globe-svg { width: 100%; height: 100%; }
-.hero__globe-glow {
-  position: absolute;
-  inset: 10%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,168,67,.08) 0%, transparent 70%);
-  filter: blur(30px);
-  pointer-events: none;
+.hero__map-container svg { display: block; }
+.hero__map-loader {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .4s;
 }
-.pulse-dot { animation: pulsGlobe 2.5s ease-in-out infinite; }
-@keyframes pulsGlobe {
-  0%,100% { opacity: .9; r: 7px; }
-  50% { opacity: 1; r: 9px; }
-}
-.pulse-ring-1 { animation: pulseRing 2.5s ease-in-out infinite; }
-@keyframes pulseRing {
-  0%,100% { opacity: .4; r: 11px; }
-  50% { opacity: .15; r: 18px; }
-}
-.pulse-ring-2 { animation: pulseRing2 2.5s ease-in-out infinite .5s; }
-@keyframes pulseRing2 {
-  0%,100% { opacity: .2; }
-  50% { opacity: .05; }
-}
+.hero__map-spin { animation: mapSpin 1.4s linear infinite; }
+@keyframes mapSpin { to { transform: rotate(360deg); } }
 
 /* Stats bar */
 .hero__statsbar {
@@ -540,53 +527,44 @@ button { cursor: pointer; border: none; background: none; }
   position: relative;
   height: 480px;
 }
-.about__card-stack { position: relative; height: 100%; }
-.about__card {
-  position: absolute;
+.about__img-wrap {
+  width: 100%;
+  height: 100%;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--border);
-  background: var(--bg-card);
   overflow: hidden;
+  border: 1px solid var(--border);
+  position: relative;
+  background: var(--bg-card);
 }
-.about__card--back {
-  width: 88%;
-  height: 85%;
-  bottom: 0; left: 0;
-  transform: rotate(-2.5deg);
-  opacity: .6;
+.about__img-wrap--placeholder::after {
+  content: 'Добавьте файл about.jpg в корень сайта';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--text-3); text-align: center; padding: 24px;
 }
-.about__card--front {
-  width: 78%;
-  height: 50%;
-  top: 5%;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-  text-align: center;
-  background: linear-gradient(135deg, var(--bg-card-2) 0%, rgba(20,32,52,1) 100%);
-  box-shadow: var(--shadow);
+.about__img-wrap--placeholder {
+  display: flex; align-items: center; justify-content: center;
+  border: 1px dashed rgba(212,168,67,.25);
 }
-.about__card-inner { padding: 24px; height: 100%; }
-.about__card-label {
-  font-size: 10px;
-  letter-spacing: .15em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 12px;
+.about__img {
+  width: 100%; height: 100%;
+  object-fit: cover;
   display: block;
+  filter: brightness(.85) saturate(.9);
+  transition: filter .4s, transform .6s;
 }
-.about__card-map { height: calc(100% - 30px); }
-.about__card-map svg { width: 100%; height: 100%; }
-.about__card-icon { margin-bottom: 16px; }
-.about__card-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  font-style: italic;
-  color: var(--text-2);
-  line-height: 1.5;
+.about__img-wrap:hover .about__img { filter: brightness(.92) saturate(1); transform: scale(1.02); }
+.about__img-badge {
+  position: absolute;
+  bottom: 20px; left: 20px;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(6,9,18,.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 8px 14px;
+  font-size: 12px; color: var(--text-2);
+  font-weight: 500;
 }
 
 .about__lead {
@@ -772,8 +750,18 @@ button { cursor: pointer; border: none; background: none; }
   overflow: hidden;
   border: 1px solid var(--border);
   background: rgba(6,9,18,.7);
+  min-height: 360px;
+  position: relative;
 }
-.logistics__map-svg { width: 100%; height: auto; display: block; }
+.logistics__map {
+  width: 100%; height: 360px;
+  position: relative;
+}
+.logistics__map svg { display: block; }
+.logistics__map-loader {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
 .map-node { cursor: default; }
 .logistics__routes {
   display: grid;
@@ -938,8 +926,6 @@ button { cursor: pointer; border: none; background: none; }
   gap: 36px;
   padding: 36px 0 36px 80px;
   position: relative;
-  opacity: 0;
-  transform: translateX(-30px);
 }
 .process__step-bubble {
   position: absolute;

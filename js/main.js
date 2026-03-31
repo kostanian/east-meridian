@@ -32,6 +32,8 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
         document.body.classList.remove('loading');
         initHeroAnimations();
         initCounters();
+        initHeroMap();
+        initLogisticsMap();
       }
     });
   });
@@ -183,46 +185,13 @@ function initHeroAnimations() {
     ease: 'power3.out'
   }, '-=0.4');
 
-  // Globe entrance
-  tl.fromTo('.hero__globe', {
-    opacity: 0,
-    scale: 0.7,
-    rotation: -15
+  // Map container entrance
+  tl.fromTo('.hero__map-container', {
+    opacity: 0, scale: 0.9, y: 20
   }, {
-    opacity: 1,
-    scale: 1,
-    rotation: 0,
-    duration: 1.4,
-    ease: 'elastic.out(1, 0.7)'
+    opacity: 1, scale: 1, y: 0,
+    duration: 1.2, ease: 'expo.out'
   }, '-=1.2');
-
-  // Globe idle rotation
-  gsap.to('#heroGlobe', {
-    rotation: 3,
-    transformOrigin: 'center center',
-    duration: 8,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut'
-  });
-
-  // Globe globe glow pulse
-  gsap.to('.hero__globe-glow', {
-    opacity: 0.6,
-    scale: 1.15,
-    duration: 3,
-    yoyo: true,
-    repeat: -1,
-    ease: 'sine.inOut'
-  });
-
-  // Reveal route lines on globe after entrance
-  setTimeout(() => {
-    gsap.to('#route1', { opacity: 0.6, duration: 0.8 });
-    gsap.to('#route2', { opacity: 0.6, duration: 0.8, delay: 0.3 });
-    gsap.to('#routeDot1', { opacity: 0.9, duration: 0.5 });
-    gsap.to('#routeDot2', { opacity: 0.9, duration: 0.5, delay: 0.3 });
-  }, 1800);
 
   // Stats bar
   tl.from('.hero__stat', {
@@ -312,16 +281,10 @@ function initCounters() {
   const about = document.querySelector('.about');
   if (!about) return;
 
-  gsap.from('.about__card--back', {
+  gsap.from('.about__img-wrap', {
     scrollTrigger: { trigger: about, start: 'top 70%' },
-    x: -60, opacity: 0, rotation: -8,
+    x: -40, opacity: 0, scale: 0.96,
     duration: 1.1, ease: 'expo.out'
-  });
-
-  gsap.from('.about__card--front', {
-    scrollTrigger: { trigger: about, start: 'top 65%' },
-    x: 60, opacity: 0, y: 30,
-    duration: 1.1, ease: 'expo.out', delay: 0.25
   });
 
   gsap.from('.about .section-eyebrow', {
@@ -386,64 +349,14 @@ function initCounters() {
 })();
 
 /* ════════════════════════════════════════
-   LOGISTICS MAP ANIMATION
+   LOGISTICS ROUTE CARDS ANIMATION
 ════════════════════════════════════════ */
-(function initLogisticsMap() {
-  const map = document.getElementById('logisticsMap');
-  if (!map) return;
-
-  const st = ScrollTrigger.create({
-    trigger: map,
-    start: 'top 70%',
-    once: true,
-    onEnter: () => {
-      // Animate route lines in via strokeDashoffset
-      const routes = ['#airRoute', '#railRoute', '#seaRoute'];
-      routes.forEach((sel, i) => {
-        const path = map.querySelector(sel);
-        if (!path) return;
-        const len = path.getTotalLength();
-        gsap.set(path, { strokeDasharray: len, strokeDashoffset: len, opacity: 0.7 });
-        gsap.to(path, {
-          strokeDashoffset: 0,
-          duration: 1.8,
-          delay: i * 0.6 + 0.3,
-          ease: 'power2.inOut',
-          onStart: () => gsap.set(path, { opacity: 0.7 })
-        });
-      });
-
-      // Animate city nodes
-      const nodes = map.querySelectorAll('.map-node');
-      gsap.from(nodes, {
-        scale: 0,
-        transformOrigin: 'center center',
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'back.out(2)',
-        delay: 0.2
-      });
-
-      // Show moving dots after routes are drawn
-      setTimeout(() => {
-        ['#airDot', '#railDot', '#seaDot'].forEach(sel => {
-          const dot = map.querySelector(sel);
-          if (dot) gsap.to(dot, { opacity: 0.85, duration: 0.5 });
-        });
-      }, 2800);
-    }
-  });
-
-  // Animate route cards
+(function initLogisticsCards() {
   gsap.from('.route-card', {
     scrollTrigger: { trigger: '.logistics__routes', start: 'top 75%' },
     opacity: 0, y: 50,
-    stagger: 0.15,
-    duration: 0.8,
-    ease: 'expo.out'
+    stagger: 0.15, duration: 0.8, ease: 'expo.out'
   });
-
   gsap.from('.logistics__local', {
     scrollTrigger: { trigger: '.logistics__local', start: 'top 80%' },
     opacity: 0, y: 30, duration: 0.8, ease: 'power3.out'
@@ -521,25 +434,22 @@ function initCounters() {
     });
   }
 
-  // Animate each step
+  // Animate each step (single fromTo to avoid conflicts)
   steps.forEach((step, i) => {
-    gsap.to(step, {
-      scrollTrigger: {
-        trigger: step,
-        start: 'top 78%',
-        toggleClass: { targets: step, className: 'active' }
-      },
-      opacity: 1,
-      x: 0,
-      duration: 0.7,
-      delay: 0.1,
-      ease: 'power3.out'
-    });
-
-    gsap.from(step, {
-      scrollTrigger: { trigger: step, start: 'top 78%' },
-      opacity: 0, x: -40, duration: 0.8, ease: 'expo.out', delay: i * 0.08
-    });
+    gsap.fromTo(step,
+      { opacity: 0, x: -40 },
+      {
+        scrollTrigger: {
+          trigger: step,
+          start: 'top 82%',
+          toggleClass: { targets: step, className: 'active' }
+        },
+        opacity: 1, x: 0,
+        duration: 0.8,
+        delay: i * 0.08,
+        ease: 'expo.out'
+      }
+    );
   });
 })();
 
@@ -743,6 +653,205 @@ function initCounters() {
     });
   });
 })();
+
+/* ════════════════════════════════════════
+   D3 MAP HELPER
+════════════════════════════════════════ */
+async function buildD3Map(containerId, options) {
+  const container = document.getElementById(containerId);
+  if (!container || typeof d3 === 'undefined' || typeof topojson === 'undefined') return;
+
+  const W = container.offsetWidth || 420;
+  const H = container.offsetHeight || options.height || 420;
+
+  const svg = d3.select(container)
+    .append('svg')
+    .attr('width', '100%')
+    .attr('height', H)
+    .attr('viewBox', `0 0 ${W} ${H}`);
+
+  const defs = svg.append('defs');
+  const glow = defs.append('filter').attr('id', `glow-${containerId}`)
+    .attr('x', '-60%').attr('y', '-60%').attr('width', '220%').attr('height', '220%');
+  glow.append('feGaussianBlur').attr('in', 'SourceGraphic').attr('stdDeviation', '4').attr('result', 'blur');
+  const fmg = glow.append('feMerge');
+  fmg.append('feMergeNode').attr('in', 'blur');
+  fmg.append('feMergeNode').attr('in', 'SourceGraphic');
+
+  const proj = d3.geoMercator()
+    .center(options.center)
+    .scale(options.scale || 160)
+    .translate([W * (options.tx || 0.5), H * (options.ty || 0.5)]);
+
+  const path = d3.geoPath().projection(proj);
+
+  // Graticule
+  const grat = d3.geoGraticule().step([15, 15]);
+  svg.append('path').datum(grat()).attr('d', path)
+    .attr('fill', 'none').attr('stroke', 'rgba(212,168,67,0.05)').attr('stroke-width', 0.6);
+
+  try {
+    const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+    const loader = container.querySelector('.hero__map-loader, .logistics__map-loader');
+    if (loader) gsap.to(loader, { opacity: 0, duration: 0.4, onComplete: () => loader.remove() });
+
+    const all = topojson.feature(world, world.objects.countries);
+    const styled = {
+      '156': { fill: 'rgba(212,168,67,0.14)', stroke: 'rgba(212,168,67,0.75)', sw: 1.2 },
+      '643': { fill: 'rgba(200,191,160,0.06)', stroke: 'rgba(200,191,160,0.45)', sw: 0.8 },
+      '398': { fill: 'rgba(200,191,160,0.09)', stroke: 'rgba(200,191,160,0.5)', sw: 0.8 },
+      '496': { fill: 'rgba(255,255,255,0.02)', stroke: 'rgba(255,255,255,0.12)', sw: 0.4 },
+    };
+    const feat = Object.keys(styled);
+
+    svg.append('g').selectAll('path')
+      .data(all.features.filter(d => !feat.includes(String(d.id))))
+      .join('path').attr('d', path)
+      .attr('fill', 'rgba(255,255,255,0.012)').attr('stroke', 'rgba(255,255,255,0.04)').attr('stroke-width', 0.25);
+
+    svg.append('g').selectAll('path')
+      .data(all.features.filter(d => feat.includes(String(d.id))))
+      .join('path').attr('d', path)
+      .attr('fill', d => styled[String(d.id)]?.fill || 'transparent')
+      .attr('stroke', d => styled[String(d.id)]?.stroke || 'none')
+      .attr('stroke-width', d => styled[String(d.id)]?.sw || 0)
+      .attr('opacity', 0)
+      .each(function(_, i) { gsap.to(this, { opacity: 1, duration: 0.7, delay: i * 0.1 + 0.2 }); });
+
+    // Routes
+    if (options.routes) {
+      options.routes.forEach((r, i) => {
+        const el = svg.append('path')
+          .datum({ type: 'Feature', geometry: { type: 'LineString', coordinates: r.coords } })
+          .attr('d', path).attr('fill', 'none')
+          .attr('stroke', r.color).attr('stroke-width', 1.8).attr('stroke-linecap', 'round')
+          .node();
+        if (el) {
+          const len = el.getTotalLength();
+          gsap.set(el, { strokeDasharray: `10 6`, strokeDashoffset: len, opacity: 0 });
+          gsap.to(el, { strokeDashoffset: 0, opacity: 0.8, duration: 2, delay: i * 0.8 + 1, ease: 'power2.inOut' });
+        }
+      });
+    }
+
+    // Cities
+    if (options.cities) {
+      const cg = svg.append('g');
+      options.cities.forEach((city, i) => {
+        const pos = proj([city.lon, city.lat]);
+        if (!pos || isNaN(pos[0])) return;
+        const [cx, cy] = pos;
+        const r = city.main ? 6 : 4;
+        const g = cg.append('g').attr('opacity', 0);
+
+        if (city.main) {
+          const ring = g.append('circle').attr('cx', cx).attr('cy', cy)
+            .attr('r', r + 8).attr('fill', 'none')
+            .attr('stroke', city.color).attr('stroke-width', 0.9).attr('opacity', 0.2).node();
+          if (ring) gsap.to(ring, { attr: { r: r + 20 }, opacity: 0, duration: 2.5, repeat: -1, ease: 'power2.out', delay: i * 0.3 });
+        }
+
+        g.append('circle').attr('cx', cx).attr('cy', cy).attr('r', r)
+          .attr('fill', city.color).attr('opacity', city.main ? 0.95 : 0.65)
+          .attr('filter', city.main ? `url(#glow-${containerId})` : null);
+
+        const tx = cx + city.dx;
+        const ta = city.dx > 0 ? 'start' : 'end';
+        g.append('text').attr('x', tx).attr('y', cy + 3)
+          .attr('text-anchor', ta).attr('fill', city.color)
+          .attr('font-size', city.main ? '10.5' : '8.5')
+          .attr('font-family', 'Inter, sans-serif').attr('font-weight', city.main ? '600' : '400')
+          .text(city.name);
+        if (city.sub) {
+          g.append('text').attr('x', tx).attr('y', cy + 15)
+            .attr('text-anchor', ta).attr('fill', city.color)
+            .attr('font-size', '8').attr('font-family', 'serif').attr('opacity', 0.5).text(city.sub);
+        }
+        gsap.to(g.node(), { opacity: 1, duration: 0.5, delay: i * 0.08 + 0.6 });
+      });
+    }
+
+    // Country labels
+    if (options.labels) {
+      options.labels.forEach(l => {
+        const pos = proj([l.lon, l.lat]);
+        if (!pos) return;
+        svg.append('text').attr('x', pos[0]).attr('y', pos[1])
+          .attr('text-anchor', 'middle').attr('fill', l.color)
+          .attr('font-size', '9').attr('font-family', 'Inter, sans-serif')
+          .attr('font-weight', '700').attr('letter-spacing', '0.15em')
+          .attr('opacity', 0).text(l.text)
+          .transition().duration(900).delay(900).attr('opacity', 1);
+      });
+    }
+
+  } catch(err) {
+    console.warn(`Map ${containerId} failed:`, err);
+    const loader = container.querySelector('.hero__map-loader, .logistics__map-loader');
+    if (loader) loader.innerHTML = '<span style="opacity:.35;font-size:11px;color:#9fa8b4">Карта недоступна</span>';
+  }
+}
+
+/* ════════════════════════════════════════
+   HERO MAP (D3)
+════════════════════════════════════════ */
+async function initHeroMap() {
+  await buildD3Map('heroMap', {
+    center: [78, 52], scale: 165, height: 460, tx: 0.52, ty: 0.52,
+    routes: [
+      { coords: [[116.4,39.9],[95,50],[65,56],[37.6,55.8]], color: '#e8c872' },
+      { coords: [[116.4,39.9],[100,44],[88,46],[76.9,43.2]], color: '#f0a500' },
+    ],
+    cities: [
+      { name:'Пекин', sub:'北京', lon:116.4, lat:39.9, main:true, color:'#d4a843', dx:9 },
+      { name:'Шанхай', lon:121.5, lat:31.2, color:'#d4a843', dx:8 },
+      { name:'Гуанчжоу', lon:113.3, lat:23.1, color:'#d4a843', dx:8 },
+      { name:'Иу', lon:120.1, lat:29.3, color:'#d4a843', dx:8 },
+      { name:'Москва', sub:'Россия', lon:37.6, lat:55.8, main:true, color:'#c8bfa0', dx:-9 },
+      { name:'Алматы', sub:'Казахстан', lon:76.9, lat:43.2, main:true, color:'#b8b0a0', dx:9 },
+      { name:'Астана', lon:71.4, lat:51.2, color:'#b8b0a0', dx:-8 },
+    ],
+    labels: [
+      { text:'КИТАЙ', lon:105, lat:34, color:'rgba(212,168,67,0.35)' },
+      { text:'РОССИЯ', lon:75, lat:64, color:'rgba(200,191,160,0.28)' },
+      { text:'КАЗАХСТАН', lon:66, lat:47, color:'rgba(200,191,160,0.28)' },
+    ]
+  });
+}
+
+/* ════════════════════════════════════════
+   LOGISTICS MAP (D3)
+════════════════════════════════════════ */
+function initLogisticsMap() {
+  ScrollTrigger.create({
+    trigger: '#logisticsMapD3',
+    start: 'top 75%',
+    once: true,
+    onEnter: () => {
+      buildD3Map('logisticsMapD3', {
+        center: [78, 50], scale: 290, height: 360, tx: 0.54, ty: 0.52,
+        routes: [
+          { coords: [[116.4,39.9],[95,50],[65,56],[37.6,55.8]], color: '#e8c872' },
+          { coords: [[116.4,39.9],[100,44],[88,46],[76.9,43.2]], color: '#f0a500' },
+          { coords: [[121.5,31.2],[125,25],[115,15],[80,10],[60,20],[45,30],[37.6,55.8]], color: '#7ab8e8' },
+        ],
+        cities: [
+          { name:'Пекин', lon:116.4, lat:39.9, main:true, color:'#d4a843', dx:9 },
+          { name:'Шанхай', lon:121.5, lat:31.2, color:'#d4a843', dx:9 },
+          { name:'Гуанчжоу', lon:113.3, lat:23.1, color:'#d4a843', dx:9 },
+          { name:'Москва', lon:37.6, lat:55.8, main:true, color:'#c8bfa0', dx:-9 },
+          { name:'Алматы', lon:76.9, lat:43.2, main:true, color:'#b8b0a0', dx:9 },
+          { name:'Астана', lon:71.4, lat:51.2, color:'#b8b0a0', dx:-8 },
+        ],
+        labels: [
+          { text:'КИТАЙ', lon:105, lat:36, color:'rgba(212,168,67,0.3)' },
+          { text:'РОССИЯ', lon:70, lat:62, color:'rgba(200,191,160,0.25)' },
+          { text:'КАЗАХСТАН', lon:63, lat:47, color:'rgba(200,191,160,0.25)' },
+        ]
+      });
+    }
+  });
+}
 
 /* ════════════════════════════════════════
    REFRESH ScrollTrigger after fonts load
