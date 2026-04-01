@@ -443,6 +443,12 @@ button { cursor: pointer; border: none; background: none; }
 }
 .hero__map-spin { animation: mapSpin 1.4s linear infinite; }
 @keyframes mapSpin { to { transform: rotate(360deg); } }
+.hero__map-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.75) saturate(.85);
+}
 
 /* Stats bar */
 .hero__statsbar {
