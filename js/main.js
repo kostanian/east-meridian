@@ -871,7 +871,7 @@ async function initHeroMap() {
     const ruHubPx = proj(RU_HUB);
     const ruCities = [
       { name:'Москва',        lon:37.6,  lat:55.8 },
-      { name:'С.-Петербург',  lon:30.3,  lat:59.9 },
+      { name:'С.-Петербург',  lon:30.3,  lat:59.9, forceRight:true },
       { name:'Екатеринбург',  lon:60.6,  lat:56.8 },
       { name:'Новосибирск',   lon:82.9,  lat:55.0 },
     ];
@@ -1009,26 +1009,14 @@ async function initHeroMap() {
       const col = isRu ? 'rgba(200,191,160,0.65)' : 'rgba(184,176,160,0.65)';
       const g = svg.append('g').attr('opacity',0);
       g.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',2.8).attr('fill',col);
-      g.append('text').attr('x',p[0]+(c.lon>55?7:-7)).attr('y',p[1]+3.5)
-        .attr('text-anchor',c.lon>55?'start':'end')
+      // С.-Петербург — подпись справа сверху, остальные по стороне от хаба
+      const right = c.forceRight || c.lon > 55;
+      const dx = right ? 7 : -7;
+      const dy = c.forceRight ? -5 : 3.5;
+      g.append('text').attr('x',p[0]+dx).attr('y',p[1]+dy)
+        .attr('text-anchor', right ? 'start' : 'end')
         .attr('fill',col).attr('font-size','8').attr('font-family','Inter,sans-serif').text(c.name);
       gsap.to(g.node(),{opacity:1,duration:0.4,delay: 4 + i*0.1});
-    });
-
-    // === Подписи стран ===
-    const labels = [
-      { text:'КИТАЙ', lon:103, lat:42, color:'rgba(212,168,67,0.28)' },
-      { text:'РОССИЯ', lon:70, lat:65, color:'rgba(200,191,160,0.22)' },
-      { text:'КАЗАХСТАН', lon:55, lat:42, color:'rgba(184,176,160,0.22)' },
-    ];
-    labels.forEach(l=>{
-      const p = proj([l.lon,l.lat]);
-      if (!p) return;
-      svg.append('text').attr('x',p[0]).attr('y',p[1])
-        .attr('text-anchor','middle').attr('fill',l.color)
-        .attr('font-size','8').attr('font-family','Inter,sans-serif')
-        .attr('font-weight','700').attr('letter-spacing','0.2em').attr('opacity',0).text(l.text)
-        .transition().duration(900).delay(700).attr('opacity',1);
     });
 
   } catch(err) {
