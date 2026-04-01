@@ -844,6 +844,19 @@ async function initHeroMap() {
       .attr('stroke-width',d=>d.id===156?1.1:0.7)
       .attr('opacity',0).each(function(_,i){ gsap.to(this,{opacity:1,duration:0.7,delay:i*0.1+0.2}); });
 
+    // === Скрыть Крым — закрасить фоном ===
+    const crimeaCoords = [
+      [32.5,46.2],[33.6,46.2],[35.0,45.7],[36.6,45.3],[36.7,44.9],
+      [35.8,44.6],[35.0,44.5],[33.5,44.3],[32.5,44.5],[31.5,44.8],
+      [31.0,45.3],[31.5,45.9],[32.5,46.2]
+    ];
+    const crimeaPx = crimeaCoords.map(c => proj(c));
+    const crimeaPath = 'M' + crimeaPx.map(p => p.join(',')).join('L') + 'Z';
+    svg.append('path').attr('d', crimeaPath)
+      .attr('fill', '#070b14')
+      .attr('stroke', '#070b14')
+      .attr('stroke-width', 2);
+
     // === Hub: центр Китая ===
     const HUB = [105, 33]; // условный центр Китая
     const hubPx = proj(HUB);
