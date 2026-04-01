@@ -874,8 +874,10 @@ async function initHeroMap() {
       { name:'С.-Петербург',  lon:30.3,  lat:59.9 },
       { name:'Екатеринбург',  lon:60.6,  lat:56.8 },
       { name:'Новосибирск',   lon:82.9,  lat:55.0 },
-      { name:'Владивосток',   lon:131.9, lat:43.1 },
     ];
+    // Владивосток — прямая линия из Пекина
+    const BEIJING = [116.4, 39.9];
+    const VLADIVOSTOK = { name:'Владивосток', lon:131.9, lat:43.1 };
 
     // Hub China → Hub Russia
     const ruMainEl = svg.append('path')
@@ -899,6 +901,27 @@ async function initHeroMap() {
         .attr('stroke-dasharray','4 4').attr('opacity',0).node();
       gsap.to(el,{opacity:1,duration:0.5,delay: 3.6 + i*0.12});
     });
+
+    // Пекин → Владивосток (прямая)
+    const vlPx = proj([VLADIVOSTOK.lon, VLADIVOSTOK.lat]);
+    const bjPx = proj(BEIJING);
+    if (vlPx && bjPx) {
+      const vlEl = svg.append('line')
+        .attr('x1',bjPx[0]).attr('y1',bjPx[1])
+        .attr('x2',vlPx[0]).attr('y2',vlPx[1])
+        .attr('stroke','rgba(200,191,160,0.55)').attr('stroke-width',1.1)
+        .attr('stroke-dasharray','6 4').attr('opacity',0).node();
+      gsap.to(vlEl,{opacity:1,duration:0.5,delay:3.8});
+
+      // Точка и подпись Владивостока
+      const vlG = svg.append('g').attr('opacity',0);
+      vlG.append('circle').attr('cx',vlPx[0]).attr('cy',vlPx[1]).attr('r',2.8)
+        .attr('fill','rgba(200,191,160,0.65)');
+      vlG.append('text').attr('x',vlPx[0]+7).attr('y',vlPx[1]+3.5)
+        .attr('fill','rgba(200,191,160,0.65)').attr('font-size','8')
+        .attr('font-family','Inter,sans-serif').text('Владивосток');
+      gsap.to(vlG.node(),{opacity:1,duration:0.4,delay:4.0});
+    }
 
     // === Hub → Казахстан hub → города Казахстана ===
     const KZ_HUB = [68, 48];
