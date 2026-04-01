@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(gh auth:*)"
+      "Bash(gh auth:*)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json\" -o \"/Users/pentagon/Desktop/East Meridian/countries-110m.json\")"
     ]
   }
 }

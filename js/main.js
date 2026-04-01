@@ -44,6 +44,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin);
       document.body.classList.remove('loading');
       initHeroAnimations();
       initCounters();
+      initHeroMap();
     }
   }, 3500);
 })();
@@ -690,7 +691,7 @@ async function buildD3Map(containerId, options) {
     .attr('fill', 'none').attr('stroke', 'rgba(212,168,67,0.05)').attr('stroke-width', 0.6);
 
   try {
-    const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+    const world = await d3.json('countries-110m.json');
     const loader = container.querySelector('.hero__map-loader, .logistics__map-loader');
     if (loader) gsap.to(loader, { opacity: 0, duration: 0.4, onComplete: () => loader.remove() });
 
@@ -823,7 +824,7 @@ async function initHeroMap() {
   const loader = container.querySelector('.hero__map-loader');
 
   try {
-    const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+    const world = await d3.json('countries-110m.json');
     if (loader) gsap.to(loader, { opacity:0, duration:0.4, onComplete:()=>loader.remove() });
 
     const all = topojson.feature(world, world.objects.countries);
